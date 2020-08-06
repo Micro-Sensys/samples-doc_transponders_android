@@ -21,7 +21,7 @@ Using this class the communication port can be open/closed. Once the communicati
 ## Steps
 Just import this project into Android Studio, connect the Android device to your computer and deploy the SampleApp.
 
-![Screenshot](screenshot/SampleApp_GetSensor_AndroidJava.png)
+![Screenshot](screenshot/SampleApp_AndroidJava.png)
 
  1. Select the reader type using the RadioButtons: Port type (USB/Bluetooth/BLE) and interface type (HF/UHF/LEGIC)
  2. Write the name of the device you wish to connect to (partial names are also allowed, for example: "PEN")
