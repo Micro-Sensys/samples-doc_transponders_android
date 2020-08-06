@@ -10,7 +10,7 @@ This sample code is for handling both HF and UHF transponders on Android devices
 	* Any Android device with Bluetooth, to use one of our Bluetooth RFID reader
 	* One of our supported industry Android devices, to use one of our RFID reader modules
 * Micro-Sensys RFID reader (either Bluetooth or module)
-* TELID®200 sensor transponders
+* Any HF or UHF transponder
 
 ## Implementation
 This code shows how to use **RFIDFunctions** class to read/write transponders. 
