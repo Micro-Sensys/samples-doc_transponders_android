@@ -1,8 +1,7 @@
 # samples-doc_transponders_android / Andriod DOC sample code for RFID transponders
 This sample code is for handling both HF and UHF transponders on Android devices using a Micro-Sensys RFID reader
 
-[Test LINK: ](../doc/communication-modes/spc)
-//TODO Add link See "..."
+> For details on DOC communication check [Useful Links](#Useful-Links) 
 
 ## Requirements
 * Android Studio
@@ -30,8 +29,10 @@ Just import this project into Android Studio, connect the Android device to your
 
 ## Useful Links
 
- - [AAR Library and API documentation](https://www.microsensys.de/downloads/DevSamples/Libraries/Android/microsensysRFID%20-%20aar%20library/)
- - [Check what is possible using our iID®DEMOsoft for PC! Download it using this link](https://www.microsensys.de/downloads/CDContent/Install/iID%c2%ae%20DEMOsoft.zip)
+* [AAR Library and API documentation](https://www.microsensys.de/downloads/DevSamples/Libraries/Android/microsensysRFID%20-%20aar%20library/)
+* Check what is possible using our iID®DEMOsoft for PC! Download it using [this link](https://www.microsensys.de/downloads/CDContent/Install/iID%c2%ae%20DEMOsoft.zip)
+* GitHub *doc* repository: [Micro-Sensys/doc](https://github.com/Micro-Sensys/doc)
+	* [communication-modes/doc](https://github.com/Micro-Sensys/doc/tree/master/communication-modes/doc)
 
 ## Contact
 
