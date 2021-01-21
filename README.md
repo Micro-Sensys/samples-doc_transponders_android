@@ -1,4 +1,4 @@
-# samples-doc_transponders_android / Andriod DOC sample code for RFID transponders
+# samples-doc_transponders_android / Android DOC sample code for RFID transponders
 This sample code is for handling both HF and UHF transponders on Android devices using a Micro-Sensys RFID reader
 
 > For details on DOC communication check [Useful Links](#Useful-Links) 
