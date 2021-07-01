@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -63,55 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
         //Load Android-Views from xml and set "OnClickListener"
         button_clearText = findViewById(R.id.button_cleartext);
-        button_clearText.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View arg0) {
-                clearText();
-            }
-        });
+        button_clearText.setOnClickListener(arg0 -> clearText());
         button_connect = findViewById(R.id.button_connect);
-        button_connect.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                connect();
-            }
-        });
+        button_connect.setOnClickListener(v -> connect());
         button_disconnect = findViewById(R.id.button_disconnect);
-        button_disconnect.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                disconnect();
-            }
-        });
+        button_disconnect.setOnClickListener(v -> disconnect());
         button_disconnect.setEnabled(false);
         button_readReaderID = findViewById(R.id.button_readerID);
-        button_readReaderID.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                readReaderID();
-            }
-        });
+        button_readReaderID.setOnClickListener(v -> readReaderID());
         button_identify = findViewById(R.id.button_identify);
-        button_identify.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                idenfity();
-            }
-        });
+        button_identify.setOnClickListener(v -> idenfity());
         button_readBytes = findViewById(R.id.button_readbytes);
-        button_readBytes.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                readBytes();
-            }
-        });
+        button_readBytes.setOnClickListener(v -> readBytes());
         button_writeBytes = findViewById(R.id.button_writebytes);
-        button_writeBytes.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                writeBytes();
-            }
-        });
+        button_writeBytes.setOnClickListener(v -> writeBytes());
         checkBox_legicFs = findViewById(R.id.checkBox_legicFS);
         editText_pageNum = findViewById(R.id.editText_pageNum);
 
@@ -481,30 +444,15 @@ public class MainActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            editText_Results.append(".");
-                        }
-                    });
+                    new Handler(Looper.getMainLooper()).post(() -> editText_Results.append("."));
                     continue;
                 }
                 //Connecting finished! Check if connected or not connected
                 if (reader.isConnected()) {
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            editText_Results.append("\n CONNECTED \n");
-                        }
-                    });
+                    new Handler(Looper.getMainLooper()).post(() -> editText_Results.append("\n CONNECTED \n"));
                 }
                 else{
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            editText_Results.append("\n Reader NOT connected \n  -> PRESS DISCONNECT BUTTON");
-                        }
-                    });
+                    new Handler(Looper.getMainLooper()).post(() -> editText_Results.append("\n Reader NOT connected \n  -> PRESS DISCONNECT BUTTON"));
                 }
 
                 //Stop this thread
