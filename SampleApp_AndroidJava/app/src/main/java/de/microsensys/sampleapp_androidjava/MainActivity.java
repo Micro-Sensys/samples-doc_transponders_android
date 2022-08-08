@@ -2,9 +2,7 @@ package de.microsensys.sampleapp_androidjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,6 +17,7 @@ import de.microsensys.exceptions.MssException;
 import de.microsensys.exceptions.ReaderErrorException;
 import de.microsensys.functions.RFIDFunctions;
 import de.microsensys.utils.InterfaceTypeEnum;
+import de.microsensys.utils.PermissionFunctions;
 import de.microsensys.utils.PortTypeEnum;
 import de.microsensys.utils.ProtocolTypeEnum;
 import de.microsensys.utils.ReaderIDInfo;
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         button_readReaderID = findViewById(R.id.button_readerID);
         button_readReaderID.setOnClickListener(v -> readReaderID());
         button_identify = findViewById(R.id.button_identify);
-        button_identify.setOnClickListener(v -> idenfity());
+        button_identify.setOnClickListener(v -> identify());
         button_readBytes = findViewById(R.id.button_readbytes);
         button_readBytes.setOnClickListener(v -> readBytes());
         button_writeBytes = findViewById(R.id.button_writebytes);
@@ -112,29 +111,6 @@ public class MainActivity extends AppCompatActivity {
             _rg.getChildAt(i).setEnabled(_enabled);
         }
     }
-    private boolean isLocationPermissionEnabled(){
-        //For Android Version > "M", location is needed to be able to find BLE devices
-        //  For Android Version > "P", "FINE_LOCATION" is needed. For previous versions "COARSE_LOCATION" is enough
-        //      In this sample "FINE_LOCATION" is used
-        //  => Location permission should be present in Manifest!
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            //Permission not granted --> REQUEST
-            //  RequestCode can be used to identify when the App comes back from request
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5000);
-
-            //TODO check if "Permission rationale" is to be shown
-            // not implemented in this SampleCode as falls out of the scope of the sample
-//                if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)){
-//                    // show Dialog explaining why location is needed!! Do it asynchronously!!
-//                    //  only request permission if user accepts
-//                }
-//                else{
-//                    //Still not rejected/accepted --> just request permission!
-//                }
-            return false;
-        }
-        return true;
-    }
 
     //Function to connect to the reader
     protected void connect() {
@@ -155,10 +131,16 @@ public class MainActivity extends AppCompatActivity {
             portType = PortTypeEnum.Bluetooth;
         if (radioBle.isChecked()) {
             portType = PortTypeEnum.BluteoothLE;
-            if (!isLocationPermissionEnabled()) {
-                editText_Results.append("ACCESS_FINE_LOCATION permission needed for BLE\n");
-            }
         }
+
+        //Check if there are permissions that need to be requested (USB permission is requested first when "initialize" is called)
+        String[] neededPermissions = PermissionFunctions.getNeededPermissions(getApplicationContext(), portType);
+        if (neededPermissions.length > 0){
+            editText_Results.append("Allow permissions and try again.");
+            requestPermissions(neededPermissions, 0);
+            return;
+        }
+
         reader = new RFIDFunctions(this, portType);
 
         //"Port Name" is only used for Bluetooth readers, for Serial interface is ignored
@@ -202,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (MssException ex){
             //Exception thrown by "initialize" if something was wrong (for example Bluetooth is disabled)
             ex.printStackTrace();
-            editText_Results.append("Initialize Exception: " + ex.toString());
+            editText_Results.append("Initialize Exception: " + ex);
         }
     }
 
@@ -259,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
         else editText_Results.append("Error initializing variable \"reader\"");
     }
 
-    protected void idenfity() {
+    protected void identify() {
         //Hide the Keyboard
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null)
@@ -286,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                     else editText_Results.append("No TAG found. \n");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    editText_Results.append(e.toString() + "\n");
+                    editText_Results.append(e + "\n");
                 }
             }
             else editText_Results.append("Not connected. \n");
@@ -342,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                     else editText_Results.append("No TAG near the Reader. \n");
                 } catch (Exception e1) {
                     e1.printStackTrace();
-                    editText_Results.append(e1.toString() + "\n");
+                    editText_Results.append(e1 + "\n");
                 }
 
             }
@@ -406,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                     else editText_Results.append("No TAG near the Reader. \n");
                 } catch (Exception e1) {
                     e1.printStackTrace();
-                    editText_Results.append(e1.toString() + "\n");
+                    editText_Results.append(e1 + "\n");
                     if (e1.getClass() == ReaderErrorException.class){
                         try {
                             editText_Results.append("0x" + Integer.toString(((ReaderErrorException) e1).getErrorNumber(), 16) + "\n");
@@ -440,6 +422,7 @@ public class MainActivity extends AppCompatActivity {
                 if (reader.isConnecting()){
                     //Still trying to connect -> Wait and continue
                     try {
+                        //noinspection BusyWait
                         Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
