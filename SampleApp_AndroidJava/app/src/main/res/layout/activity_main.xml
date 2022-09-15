@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +13,8 @@
         android:text="Clear Text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_disconnect"/>
+        app:layout_constraintEnd_toStartOf="@id/button_disconnect"
+        tools:ignore="HardcodedText" />
     <Button
         android:id="@+id/button_disconnect"
         android:layout_width="0dp"
@@ -22,7 +22,8 @@
         android:text="DISCONNECT"
         app:layout_constraintTop_toTopOf="@id/button_cleartext"
         app:layout_constraintStart_toEndOf="@id/button_cleartext"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
     <RadioGroup
         android:id="@+id/radiogroupPortType"
@@ -37,20 +38,23 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="USB" />
+            android:text="USB"
+            tools:ignore="HardcodedText" />
 
         <RadioButton
             android:id="@+id/radio_BtClassic"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="Bluetooth" />
+            android:text="Bluetooth"
+            tools:ignore="HardcodedText" />
         <RadioButton
             android:id="@+id/radio_Ble"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="BLE" />
+            android:text="BLE"
+            tools:ignore="HardcodedText" />
     </RadioGroup>
 
     <RadioGroup
@@ -66,21 +70,24 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="HF" />
+            android:text="HF"
+            tools:ignore="HardcodedText" />
 
         <RadioButton
             android:id="@+id/radio_UHF"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="UHF" />
+            android:text="UHF"
+            tools:ignore="HardcodedText" />
 
         <RadioButton
             android:id="@+id/radio_LEGIC"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="LEGIC" />
+            android:text="LEGIC"
+            tools:ignore="HardcodedText" />
     </RadioGroup>
 
     <Button
@@ -90,7 +97,8 @@
         android:text="CONNECT"
         app:layout_constraintTop_toBottomOf="@id/radiogroupProtType"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editText_readerName"/>
+        app:layout_constraintEnd_toStartOf="@id/editText_readerName"
+        tools:ignore="HardcodedText" />
     <EditText
         android:id="@+id/editText_readerName"
         android:layout_width="0dp"
@@ -99,7 +107,9 @@
         android:text="POCKET"
         app:layout_constraintTop_toTopOf="@id/button_connect"
         app:layout_constraintStart_toEndOf="@id/button_connect"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,LabelFor"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/button_readerID"
@@ -108,7 +118,8 @@
         android:text="READER ID"
         app:layout_constraintTop_toBottomOf="@id/button_connect"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_identify"/>
+        app:layout_constraintEnd_toStartOf="@id/button_identify"
+        tools:ignore="HardcodedText" />
     <Button
         android:id="@+id/button_identify"
         android:layout_width="0dp"
@@ -116,7 +127,8 @@
         android:text="IDENTIFY"
         app:layout_constraintTop_toTopOf="@id/button_readerID"
         app:layout_constraintStart_toEndOf="@id/button_readerID"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button_readbytes"
@@ -125,7 +137,8 @@
         android:text="READ BYTES"
         app:layout_constraintTop_toBottomOf="@id/button_readerID"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_writebytes"/>
+        app:layout_constraintEnd_toStartOf="@id/button_writebytes"
+        tools:ignore="HardcodedText" />
     <Button
         android:id="@+id/button_writebytes"
         android:layout_width="0dp"
@@ -133,7 +146,8 @@
         android:text="WRITE BYTES"
         app:layout_constraintTop_toTopOf="@id/button_readbytes"
         app:layout_constraintStart_toEndOf="@id/button_readbytes"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
     <CheckBox
         android:id="@+id/checkBox_legicFS"
@@ -143,7 +157,8 @@
         app:layout_constraintTop_toTopOf="@id/editText_pageNum"
         app:layout_constraintBottom_toBottomOf="@id/editText_pageNum"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tv_PageTitle"/>
+        app:layout_constraintEnd_toStartOf="@id/tv_PageTitle"
+        tools:ignore="HardcodedText" />
     <TextView
         android:id="@+id/tv_PageTitle"
         android:layout_width="wrap_content"
@@ -151,7 +166,8 @@
         android:text="Seg./Page:"
         app:layout_constraintBottom_toBottomOf="@id/checkBox_legicFS"
         app:layout_constraintStart_toEndOf="@id/checkBox_legicFS"
-        app:layout_constraintEnd_toStartOf="@id/editText_pageNum"/>
+        app:layout_constraintEnd_toStartOf="@id/editText_pageNum"
+        tools:ignore="HardcodedText" />
     <EditText
         android:id="@+id/editText_pageNum"
         android:layout_width="0dp"
@@ -160,7 +176,9 @@
         android:text="3"
         app:layout_constraintTop_toBottomOf="@id/button_readbytes"
         app:layout_constraintStart_toEndOf="@id/tv_PageTitle"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,LabelFor"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editText_Results"
@@ -175,6 +193,8 @@
         app:layout_constraintTop_toBottomOf="@id/editText_pageNum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,RtlHardcoded,TextFields"
+        android:importantForAutofill="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
