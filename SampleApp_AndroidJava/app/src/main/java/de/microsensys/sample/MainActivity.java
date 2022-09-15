@@ -1,11 +1,9 @@
-package de.microsensys.sampleapp_androidjava;
+package de.microsensys.sample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +14,7 @@ import android.widget.RadioGroup;
 import de.microsensys.exceptions.MssException;
 import de.microsensys.exceptions.ReaderErrorException;
 import de.microsensys.functions.RFIDFunctions;
+import de.microsensys.utils.HelperFunctions;
 import de.microsensys.utils.InterfaceTypeEnum;
 import de.microsensys.utils.PermissionFunctions;
 import de.microsensys.utils.PortTypeEnum;
@@ -260,9 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     if (UID!=null){
                         //Transponder found --> Show hexadecimal representation of identifier
                         editText_Results.append("UID found... (Hexadecimal):\n  ");
-                        for (byte aUID : UID) {                //For each byte in the byte array
-                            editText_Results.append(String.format("%X", aUID) + " "); //Convert bytes into a Hexadecimal String and write them.
-                        }
+                        editText_Results.append(HelperFunctions.bytesToHexStr(UID));
                         editText_Results.append("\n");
                     }
                     else editText_Results.append("No TAG found. \n");
@@ -304,9 +301,7 @@ public class MainActivity extends AppCompatActivity {
                     if (UID!=null){
                         //Transponder found
                         editText_Results.append("UID found... (Hexadecimal):\n  ");
-                        for (byte aUID : UID) {
-                            editText_Results.append(String.format("%X", aUID) + " "); //Print TAG UID
-                        }
+                        editText_Results.append(HelperFunctions.bytesToHexStr(UID));
                         editText_Results.append("\n");
 
                         //Read data from the transponder memory (for example Bytes 0-15)
@@ -314,9 +309,7 @@ public class MainActivity extends AppCompatActivity {
                         if (data!=null){
                             //Data read from transponder --> Show Hexadecimal representation
                             editText_Results.append("/--/\n16 bytes of data read... (Hexadecimal):\n  ");
-                            for (byte aData : data) {
-                                editText_Results.append(String.format("%X", aData) + " ");
-                            }
+                            editText_Results.append(HelperFunctions.bytesToHexStr(data));
                             editText_Results.append("\n");
                         }
                         else editText_Results.append("Error reading.\n");
@@ -360,9 +353,7 @@ public class MainActivity extends AppCompatActivity {
                     if (UID!=null){
                         //Transponder found
                         editText_Results.append("UID found... (Hexadecimal):\n  ");
-                        for (byte aUID : UID) {
-                            editText_Results.append(String.format("%X", aUID) + " ");
-                        }
+                        editText_Results.append(HelperFunctions.bytesToHexStr(UID));
                         editText_Results.append("\n");
 
                         //Prepare data to write
@@ -374,14 +365,12 @@ public class MainActivity extends AppCompatActivity {
                             else data[i]=0x00; 						//if there is not enough bytes, fill byte array with zeros
                         }
                         editText_Results.append("Data to write: ");
-                        for (byte aData : data) {    //For each byte in the byte array
-                            editText_Results.append(String.format("%X", aData) + " ");//Convert bytes into a Hexadecimal String and write them.
-                        }
+                        editText_Results.append(HelperFunctions.bytesToHexStr(data));
                         editText_Results.append("\n");
 
                         //Try to write from Byte 0, 16 bytes into a TAG memory
                         if (reader.writeBytes(UID, 0, data, false)){
-                            editText_Results.append("Data written succesfully.\n");
+                            editText_Results.append("Data written successfully.\n");
                         }
                         else editText_Results.append("Error writing. \n");
                     }
@@ -427,15 +416,15 @@ public class MainActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    new Handler(Looper.getMainLooper()).post(() -> editText_Results.append("."));
+                    runOnUiThread(() -> editText_Results.append("."));
                     continue;
                 }
                 //Connecting finished! Check if connected or not connected
                 if (reader.isConnected()) {
-                    new Handler(Looper.getMainLooper()).post(() -> editText_Results.append("\n CONNECTED \n"));
+                    runOnUiThread(() -> editText_Results.append("\n CONNECTED \n"));
                 }
                 else{
-                    new Handler(Looper.getMainLooper()).post(() -> editText_Results.append("\n Reader NOT connected \n  -> PRESS DISCONNECT BUTTON"));
+                    runOnUiThread(() -> editText_Results.append("\n Reader NOT connected \n  -> PRESS DISCONNECT BUTTON"));
                 }
 
                 //Stop this thread
