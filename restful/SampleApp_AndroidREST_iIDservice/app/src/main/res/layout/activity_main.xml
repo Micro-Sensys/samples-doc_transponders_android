@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_cleartext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Clear Text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_disconnect"
+        tools:ignore="HardcodedText" />
+    <Button
+        android:id="@+id/button_disconnect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="DISCONNECT"
+        app:layout_constraintTop_toTopOf="@id/button_cleartext"
+        app:layout_constraintStart_toEndOf="@id/button_cleartext"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:id="@+id/radiogroupPortType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/button_cleartext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <RadioButton
+            android:id="@+id/radio_Usb"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="USB"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/radio_BtClassic"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Bluetooth"
+            tools:ignore="HardcodedText" />
+        <RadioButton
+            android:id="@+id/radio_Ble"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="BLE"
+            tools:ignore="HardcodedText" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radiogroupProtType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/radiogroupPortType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <RadioButton
+            android:id="@+id/radio_HF"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="HF"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/radio_UHF"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="UHF"
+            tools:ignore="HardcodedText" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_connect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CONNECT"
+        app:layout_constraintTop_toBottomOf="@id/radiogroupProtType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editText_readerName"
+        tools:ignore="HardcodedText" />
+    <EditText
+        android:id="@+id/editText_readerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="POCKET"
+        app:layout_constraintTop_toTopOf="@id/button_connect"
+        app:layout_constraintStart_toEndOf="@id/button_connect"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,LabelFor"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/button_readerID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="READER ID"
+        app:layout_constraintTop_toBottomOf="@id/button_connect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_identify"
+        tools:ignore="HardcodedText" />
+    <Button
+        android:id="@+id/button_identify"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="IDENTIFY"
+        app:layout_constraintTop_toTopOf="@id/button_readerID"
+        app:layout_constraintStart_toEndOf="@id/button_readerID"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button_readbytes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="READ BYTES"
+        app:layout_constraintTop_toBottomOf="@id/button_readerID"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_writebytes"
+        tools:ignore="HardcodedText" />
+    <Button
+        android:id="@+id/button_writebytes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="WRITE BYTES"
+        app:layout_constraintTop_toTopOf="@id/button_readbytes"
+        app:layout_constraintStart_toEndOf="@id/button_readbytes"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_PageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seg./Page:"
+        app:layout_constraintTop_toTopOf="@id/editText_pageNum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editText_pageNum"
+        tools:ignore="HardcodedText" />
+    <EditText
+        android:id="@+id/editText_pageNum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="3"
+        app:layout_constraintTop_toBottomOf="@id/button_readbytes"
+        app:layout_constraintStart_toEndOf="@id/tv_PageTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,LabelFor"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/editText_Results"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="Result of commands..."
+        android:gravity="top|left"
+        android:ellipsize="end"
+        android:cursorVisible="true"
+        android:longClickable="false"
+        android:clickable="false"
+        app:layout_constraintTop_toBottomOf="@id/editText_pageNum"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,RtlHardcoded,TextFields"
+        android:importantForAutofill="no" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

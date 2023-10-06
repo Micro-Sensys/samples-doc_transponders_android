@@ -1,4 +1,4 @@
-# samples-doc_transponders_android / Android DOC sample code for RFID transponders
+# Java DOC sample code for RFID transponders
 This sample code is for handling both HF and UHF transponders on Android devices using a Micro-Sensys RFID reader
 
 > For details on DOC communication check [Useful Links](#Useful-Links) 
@@ -12,14 +12,24 @@ This sample code is for handling both HF and UHF transponders on Android devices
 * Any HF or UHF transponder
 
 ## Implementation
-All sample code available in this repository show how to read/write transponders in Android systems. 
+This code shows how to use **RFIDFunctions** class to read/write transponders. 
+Using this class the communication port can be open/closed. Once the communication with RFID reader is established, the different functions to read/write can be tested.
 
-## Available sample codes
-This repository contains subfolders for different languages
- * [Java](java)
- * [RESTful](restful)
+> Class information is available under API documentation. See [Useful Links](#Useful-Links)
+
+## Steps
+Just import this project into Android Studio, connect the Android device to your computer and deploy the SampleApp.
+
+![Screenshot](screenshot/SampleApp_AndroidJava.png)
+
+ 1. Select the reader type using the RadioButtons: Port type (USB/Bluetooth/BLE) and interface type (HF/UHF/LEGIC)
+ 2. Write the name of the device you wish to connect to (partial names are also allowed, for example: "PEN")
+ 3. Press *CONNECT*. Once the connect process finishes, the result will be shown in the EditText on the bottom side
+ 4. Use the buttons to perform the read/write operations. Results will be shown in EditText on the bottom side
 
 ## Useful Links
+
+* [AAR Library and API documentation](https://www.microsensys.de/downloads/DevSamples/Libraries/Android/microsensysRFID%20-%20aar%20library/)
 * Check what is possible using our iID®DEMOsoft for PC! Download it using [this link](https://www.microsensys.de/downloads/SW_Install/iID%c2%aeDEMOsoft2020/Setup%20iID%20DEMOsoft%202020.exe)
 * Check what is possible using our iID®DEMOsoft for Android! Download it using [this link](https://play.google.com/store/apps/details?id=de.microsensys.demosoft_2022)
 * GitHub *documentation* repository: [Micro-Sensys/documentation](https://github.com/Micro-Sensys/documentation)
