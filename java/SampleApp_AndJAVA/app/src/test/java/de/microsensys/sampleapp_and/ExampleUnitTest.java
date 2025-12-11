@@ -1,4 +1,4 @@
-package de.microsensys.sampleapp_andjava;
+package de.microsensys.sampleapp_and;
 
 import org.junit.Test;
 
