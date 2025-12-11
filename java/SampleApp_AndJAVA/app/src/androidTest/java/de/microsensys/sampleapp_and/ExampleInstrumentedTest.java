@@ -1,4 +1,4 @@
-package de.microsensys.sampleapp_andjava;
+package de.microsensys.sampleapp_and;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("de.microsensys.sampleapp_andjava", appContext.getPackageName());
+        assertEquals("de.microsensys.sampleapp_and", appContext.getPackageName());
     }
 }

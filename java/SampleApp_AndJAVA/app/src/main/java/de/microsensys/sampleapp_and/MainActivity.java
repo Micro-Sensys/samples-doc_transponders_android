@@ -1,6 +1,4 @@
-package de.microsensys.sampleapp_andjava;
-
-import androidx.appcompat.app.AppCompatActivity;
+package de.microsensys.sampleapp_and;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +8,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import de.microsensys.exceptions.MssException;
 import de.microsensys.exceptions.ReaderErrorException;
@@ -29,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroupPortType;
     RadioButton radioUsb;
     RadioButton radioBT;
-    RadioButton radioBle;
     RadioGroup radioGroupProt;
     RadioButton radioHF;
     RadioButton radioUHF;
@@ -47,15 +50,21 @@ public class MainActivity extends AppCompatActivity {
     //Text box where the info will be shown
     EditText editText_Results;
 
-    private CheckConnectingReader mCheckThread;
-
     //microsensys RFID package
     RFIDFunctions reader;
+
+    private CheckConnectingReader mCheckThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         //Load Android-Views from xml and set "OnClickListener"
         button_clearText = findViewById(R.id.button_cleartext);
@@ -80,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         radioGroupPortType = findViewById(R.id.radiogroupPortType);
         radioUsb = findViewById(R.id.radio_Usb);
-        radioBT = findViewById(R.id.radio_BtClassic);
-        radioBle = findViewById(R.id.radio_Ble);
+        radioBT = findViewById(R.id.radio_Bt);
         radioBT.setChecked(true);
         radioGroupProt = findViewById(R.id.radiogroupProtType);
         radioHF = findViewById(R.id.radio_HF);
@@ -129,9 +137,6 @@ public class MainActivity extends AppCompatActivity {
         int portType = PortTypeEnum.USB;
         if (radioBT.isChecked())
             portType = PortTypeEnum.Bluetooth;
-        if (radioBle.isChecked()) {
-            portType = PortTypeEnum.BluetoothLE;
-        }
 
         //Check if there are permissions that need to be requested (USB permission is requested first when "initialize" is called)
         String[] neededPermissions = PermissionFunctions.getNeededPermissions(getApplicationContext(), portType);
