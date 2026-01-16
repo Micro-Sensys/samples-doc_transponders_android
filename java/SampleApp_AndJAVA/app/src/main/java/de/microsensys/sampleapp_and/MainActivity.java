@@ -26,6 +26,7 @@ import de.microsensys.utils.ProtocolTypeEnum;
 import de.microsensys.utils.ReaderIDInfo;
 import de.microsensys.utils.SystemMaskEnum;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
 
     //Buttons to send the commands
